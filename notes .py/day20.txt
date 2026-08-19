@@ -1,0 +1,525 @@
+Modules and User-Defined Modules
+
+Introduction to Modules
+What is a Module?
+A module is a Python file (.py) that contains functions, classes, variables, and executable
+code. Instead of writing everything in a single file, we can divide a program into multiple
+modules. This makes the code easier to organize, reuse, and maintain.
+Advantages of Modules
+● Code Reusability
+● Better Code Organization
+● Reduces Code Duplication
+● Easier Debugging
+● Easier Maintenance
+● Supports Team Collaboration
+
+Types of Modules
+Python provides three types of modules.
+1. User-Defined Modules
+Modules created by programmers.
+Examples
+● calculator.py
+● student.py
+● employee.py
+2. Built-in Modules
+Modules already provided by Python.
+Examples
+● math
+● os
+● random
+
+Python
+
+Python
+
+Python
+
+Python
+● datetime
+● statistics
+● sys
+
+Importing Modules
+Python provides several ways to import modules.
+Import Entire Module
+Syntax
+
+import module_name
+
+Example
+
+import my_module
+print(my_module.greet("Rahul"))
+
+Import Specific Function
+Syntax
+
+from module_name import function_name
+
+Example
+
+from my_module import greet
+print(greet("Rahul"))
+
+Python
+
+Python
+
+Python
+
+Python
+
+Python
+Import Multiple Functions
+Syntax
+
+from module_name import function1, function2
+
+Example
+
+from math import sqrt, factorial
+print(sqrt(25))
+print(factorial(5))
+
+Import Using an Alias
+Syntax
+
+import module_name as alias_name
+
+Example
+
+import my_module as mm
+print(mm.greet("Rahul"))
+
+Import Everything (Not Recommended)
+Syntax
+
+from module_name import *
+
+Example
+
+Python
+
+Python
+
+Python
+
+None
+from math import *
+print(sqrt(16))
+Note
+Importing everything using * is not recommended because it may create name conflicts.
+
+User-Defined Modules
+
+Definition
+A User-Defined Module is a Python file created by the programmer to store reusable code.
+Step 1: Create a Module
+Create a file named my_module.py
+
+def greet(name):
+return f"Hello, {name}!"
+pi = 3.14159
+
+Step 2: Import the Module
+Create another file named main.py
+
+import my_module
+print(my_module.greet("Alice"))
+print(my_module.pi)
+
+Output
+
+Hello, Alice!
+
+Python
+
+None
+
+Python
+
+None
+3.14159
+
+Importing a Specific Function
+
+from my_module import greet
+print(greet("Bob"))
+
+Output
+
+Hello, Bob!
+
+Importing Using an Alias
+
+import my_module as m
+print(m.greet("Charlie"))
+
+Output
+
+Hello, Charlie!
+
+Python Module Search Path
+Definition
+When Python imports a module, it searches for that module in different locations.
+Search Order
+1. Current working directory
+2. Built-in modules
+3. Directories listed in sys.path
+
+Python
+
+Python
+
+Python
+View the Search Path
+
+import sys
+print(sys.path)
+
+Add a Custom Path
+
+import sys
+sys.path.append("C:/PythonModules")
+Python will now also search this folder while importing modules.
+
+The name Variable
+
+Definition
+Every Python file contains a special built-in variable called __name__. Python automatically
+assigns a value to this variable depending on how the file is executed.
+There are only two possible values.
+● "__main__"
+● Module name
+Case 1: Running the File Directly
+Suppose we have a file named demo.py
+
+print(__name__)
+
+Run the file.
+
+None
+
+None
+
+Python
+
+Python
+
+Python
+
+None
+python demo.py
+
+Output
+
+__main__
+
+Explanation
+Since demo.py is the file that starts the program, Python considers it the main program.
+So Python automatically assigns
+
+__name__ = "__main__"
+
+Case 2: Importing the File
+Suppose demo.py
+
+print(__name__)
+Another file main.py
+
+import demo
+
+Output
+
+demo
+
+Explanation
+This time, demo.py is not the main program. It is being used as a module. So Python
+assigns
+
+Python
+
+Python
+
+Python
+
+Python
+__name__ = "demo"
+
+Here, "demo" is simply the filename without the .py extension.
+
+if name == "main"
+
+Definition
+The statement
+
+if __name__ == "__main__":
+
+checks whether the current file is being executed directly. If the file is executed directly, the
+condition becomes True. If the file is imported into another program, the condition becomes
+False.
+Syntax
+
+if __name__ == "__main__":
+statements
+
+Example
+my_module.py
+
+def greet(name):
+return f"Hello {name}"
+if __name__ == "__main__":
+print(greet("Alice"))
+
+None
+
+None
+
+Python
+
+Python
+
+Python
+
+Python
+Run the File Directly
+
+python my_module.py
+
+Output
+
+Hello Alice
+
+Why?
+When this file is executed directly,
+
+__name__ = "__main__"
+
+Therefore,
+
+if __name__ == "__main__":
+
+becomes
+
+if "__main__" == "__main__":
+
+The condition is True, so the code inside the if block executes.
+Import the Module
+Create another file.
+
+import my_module
+print("Welcome to Python")
+
+Output
+
+None
+
+Python
+
+Python
+
+None
+
+None
+Welcome to Python
+
+Why?
+When my_module.py is imported, Python assigns
+
+__name__ = "my_module"
+
+Now the condition becomes
+
+if "my_module" == "__main__":
+
+The condition is False, so the code inside the if block is skipped. Only the imported
+functions, variables, and classes are available.
+
+Why Do We Use if name == "main"?
+● To prevent test code from running when the module is imported.
+● To use the same file as both a standalone program and a reusable module.
+● To improve code organization.
+● To make modules reusable.
+
+Installing External Modules
+Third-party modules can be installed using pip.
+Syntax
+
+pip install module_name
+
+Example
+
+pip install requests
+
+
+
+
+
+
+
+
+
+
+
+
+
+Built-in Modules
+
+1. System and OS Interaction Modules
+1.1 os – Operating System Interface
+The os module provides functions to interact with the operating system.
+Common Functions:
+
+Function Description
+os.getcwd() Returns the current working directory
+os.chdir(path) Changes the current working directory
+os.listdir(path) Returns a list of files and folders in a directory
+os.mkdir(name) Creates a new directory
+os.remove(file) Deletes a specified file
+os.rmdir(dir) Removes an empty directory
+os.path.exists(path) Checks if a path exists
+Example:
+
+import os
+print("Current Directory:", os.getcwd())
+if not os.path.exists("example_folder"):
+os.mkdir("example_folder")
+
+1.2 sys – System-Specific Parameters and Functions
+The sys module provides access to interpreter-specific functions and variables.
+
+Python
+
+Python
+Common Functions:
+Function Description
+sys.argv List of command-line arguments
+sys.exit() Exits the program
+sys.path List of paths for module search
+sys.version Returns the Python version
+Example:
+
+import sys
+print("Python Version:", sys.version)
+
+1.3 platform – System and Platform Information
+Provides details about the system, OS, and hardware.
+Common Functions:
+
+Function Description
+platform.system() Returns OS name (e.g., Windows, Linux)
+platform.release() OS release version
+platform.processor() Returns processor type
+Example:
+
+import platform
+print(platform.system(), platform.release(),
+platform.processor())
+
+Python
+2. json – JSON Encoding and Decoding
+The json module allows encoding Python objects into JSON format and decoding JSON
+back to Python.
+Functions:
+
+Function Description
+json.dumps(obj) Converts Python object to JSON string
+json.loads(json_str) Converts JSON string to Python object
+json.dump(obj, file) Writes JSON object to a file
+json.load(file) Reads JSON data from a file
+Example:
+
+import json
+data = {"name": "Alice", "age": 30}
+json_str = json.dumps(data)
+print(json_str)
+parsed = json.loads(json_str)
+print(parsed["name"])
+
+3. Mathematics and Randomness Modules
+3.1 math – Mathematical Functions
+Provides mathematical operations and constants.
+
+Python
+Constants:
+
+Constant Description
+
+math.pi π = 3.14159...
+math.e Euler’s number ≈ 2.718
+Functions:
+
+Function Description
+math.sqrt(x) Returns the square root of x
+math.pow(x, y) x raised to the power y (x^y)
+math.ceil(x) Smallest integer ≥ x
+math.floor(x) Largest integer ≤ x
+math.fabs(x) Absolute value of x
+math.factorial(x) Factorial of x (x!)
+math.gcd(x, y) Greatest common divisor
+math.log(x, base) Logarithm of x to the given base
+math.sin(x) Sine of x (x in radians)
+math.cos(x) Cosine of x
+math.tan(x) Tangent of x
+math.degrees(x) Convert radians to degrees
+math.radians(x) Convert degrees to radians
+Example:
+
+import math
+print(math.sqrt(25))
+print(math.factorial(5))
+print(math.sin(math.pi / 2))
+
+Python
+3.2 random – Generate Random Numbers
+Used for random selections, number generation, and shuffling.
+Functions:
+
+Function Description
+random.random() Returns a float in the range [0.0, 1.0)
+random.randint(a, b) Returns random integer between a and b (inclusive)
+random.uniform(a, b) Returns a float between a and b
+random.choice(seq) Returns a random element from a non-empty sequence
+random.choices(seq,k=n) Returns a list of k random elements from seq
+random.shuffle(list) Shuffles the list in place
+random.seed(n) Sets the seed for reproducibility
+Example:
+
+import random
+print(random.randint(1, 100))
+print(random.choice(['apple', 'banana', 'cherry']))
+
+4. Data Structures and Iteration Utilities
+4.1 collections – Specialized Data Structures
+Provides alternatives to built-in types for performance and convenience.
+Key Classes:
+
+Class Description
+Counter Counts frequency of elements
+defaultdict Dictionary with default values
+deque Double-ended queue for fast appends/pops
+
+Python
+
+Python
+Example:
+
+from collections import Counter, defaultdict
+data = ['a', 'b', 'a', 'c']
+counter = Counter(data)
+print(counter)
+dd = defaultdict(int)
+dd['missing'] += 1
+print(dd['missing']) # Output: 1
+
+4.2 itertools – Efficient Iteration Utilities
+Provides tools for creating iterators for efficient looping.
+Common Functions:
+
+Function Description
+combinations(iter, r) r-length tuples, combinations without replacement
+permutations(iter, r) r-length tuples, all possible orderings
+Example:
+
+import itertools
+print(list(itertools.combinations('ABCD', 2)))
