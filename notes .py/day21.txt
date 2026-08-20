@@ -1,0 +1,205 @@
+What is a File in Python?
+A file is a place where data is stored permanently — like a text file (.txt) or CSV file (.csv: Comma-Separated Values).
+Python helps us read from and write to these files easily using built-in functions.
+
+ Why Do We Use Files?
+To store data permanently
+  To read saved content later
+  To share or process data like logs, reports, or user records
+
+ Basic Steps for File Handling in Python
+Step
+Action
+1
+Open the file
+2
+Read or Write to the file
+3
+Close the file
+
+
+ Syntax to Open a File
+file = open("filename.txt", "mode")
+Modes:
+'r' – Read
+'w' – Write (overwrites existing content)
+'a' – Append (adds to existing content)
+'x' – Create new file (error if exists)
+'b' – Binary mode (e.g., for images)
+
+ Example 1: Writing to a File
+file = open("example.txt", "w")  # Open file in write mode
+file.write("Hello, this is Python!\n")
+file.write("File handling is easy.")
+file.close()  # Always close the file
+ This creates (or overwrites) a file named example.txt and writes 2 lines.
+ Example 2: Reading from a File
+file = open("example.txt", "r")  # Open file in read mode
+content = file.read()
+print(content)
+file.close()
+This will read and display the contents of example.txt.
+
+ Example 3: Appending to a File
+file = open("example.txt", "a")  # Open in append mode
+file.write("\nThis line is appended.")
+file.close()
+ This adds a new line at the end without deleting existing content.
+
+ Example 4: Using with (Best Practice)
+with open("example.txt", "r") as file:
+    print(file.read())  # No need to close the file manually
+ The with block auto-closes the file when done.
+
+ Summary Table
+Mode
+Description
+'r'
+Read-only
+'w'
+Write (deletes old content)
+'a'
+Append (add at end)
+'x'
+Create new file
+'b'
+Binary mode
+
+ 
+ 
+Read Mode ('r') – Reading from a File
+When you open a file in 'r' mode, you can use these methods:
+ 1. read()
+Reads entire file as a single string.
+f = open("sample.txt", "r")
+data = f.read()
+print(data)
+f.close()
+
+ 2. readline()
+Reads one line at a time.
+f = open("sample.txt", "r")
+line1 = f.readline()
+line2 = f.readline()
+print(line1, line2)
+f.close()
+
+ 3. readlines()
+Reads all lines and returns a list of lines.
+f = open("sample.txt", "r")
+lines = f.readlines()
+print(lines)
+f.close()
+
+ Write Mode ('w') – Writing to a File
+When you open a file in 'w' mode, it clears old content and lets you write new content.
+ 1. write(string)
+Writes a string to the file.
+f = open("data.txt", "w")
+f.write("Hello Students\n")
+f.write("Welcome to Python file handling.")
+f.close()
+
+ 2. writelines(list_of_strings)
+Writes a list of strings line by line (no \n added automatically).
+lines = ["Line 1\n", "Line 2\n", "Line 3\n"]
+f = open("data.txt", "w")
+f.writelines(lines)
+f.close()
+ Remember: writelines() does not insert newlines by itself — you must include \n in the strings.
+Important:
+import os
+ path=r"C:\Users\Jani Basha Shaik\Downloads\janisss.txt"
+ w=['jani\n','basha\n']
+ f=open(path,'w')
+ f.write(w)
+ print("done")
+output:
+  File "D:\DSA Videos\DSAcodingFolder\modulesconcepts\second.py", line 5, in <module>
+	f.write(w)
+TypeError: write() argument must be str, not list
+ 
+
+ Other Useful File Methods
+ close()
+Closes the file to free up memory.
+·        Summary Table
+Method
+Mode
+Description
+read()
+'r'
+Reads entire file
+readline()
+'r'
+Reads one line
+readlines()
+'r'
+Reads all lines as a list
+write()
+'w'
+Writes a string
+writelines()
+'w'
+Writes a list of strings
+close()
+all modes
+Closes the file
+
+ 
+Summary Table
+Method
+Use Case
+open()
+Open file for reading/writing
+close()
+Close the file
+read()
+Read entire content
+readline()
+Read one line
+readlines()
+Read all lines as a list
+write()
+Write string to file
+writelines()
+Write multiple lines (as list)
+
+ 
+Use of Raw String
+f = open(r"C:\Users\Jani Basha Shaik\Desktop\pfs2.txt", "+")
+There are two things to understand here:
+ 
+ 1. r"..." – Raw String
+The r before the string means "raw string".
+ 
+It tells Python not to treat backslashes \ as escape characters.
+ 
+Without r:
+ 
+"C:\Users\Jani Basha Shaik\Desktop\pfs2.txt"
+This may raise an error or treat \n, \t, etc. as special characters (\t = tab, \n = newline).
+ 
+With r:
+ 
+r"C:\Users\Jani Basha Shaik\Desktop\pfs2.txt"
+Now Python understands the exact path as you typed it on Windows.
+ 
+ 2. Mode "+" – Incorrect/Incomplete
+The mode "+" by itself is not valid in Python.
+ 
+ + is always combined with another mode like:
+ 
+"r+" → Read and write
+ 
+"w+" → Write and read (overwrites file)
+ 
+"a+" → Append and read
+ 
+ Wrong:
+open("file.txt", "+")  # Not valid!
+ Correct:
+f = open(r"C:\Users\Jani Basha Shaik\Desktop\pfs2.txt", "r+")  # Read and write
+ Quick Reference of Modes with +:
+Mode Description
+r+ 	Read and write (file must exist)
